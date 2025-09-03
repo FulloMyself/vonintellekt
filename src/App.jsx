@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Gate from "./components/Gate";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -11,16 +12,24 @@ function App() {
   return (
     <>
       {!entered && <Gate onEnter={() => setEntered(true)} />}
-      {entered && (
-        <div className="app opacity-0 transition-opacity duration-700">
-          <Navbar />
-          <main>
-            <Hero />
-            <Tiles />
-          </main>
-          <Footer />
-        </div>
-      )}
+      <AnimatePresence>
+        {entered && (
+          <motion.div
+            className="app"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <Navbar />
+            <main>
+              <Hero />
+              <Tiles />
+            </main>
+            <Footer />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

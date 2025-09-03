@@ -7,11 +7,16 @@ const Navbar = () => (
         VON INTELLEKT
       </a>
       <nav className="flex gap-6 font-semibold text-white/90">
-        <a href="#artists">Artists</a>
-        <a href="#projects">Projects</a>
-        <a href="#shop">Shop</a>
-        <a href="#contact">Contact</a>
-      </nav>
+  {["Artists", "Projects", "Shop", "Contact"].map((link) => (
+    <a
+      key={link}
+      href={`#${link.toLowerCase()}`}
+      className="relative after:block after:absolute after:h-[2px] after:w-0 after:bg-white after:bottom-0 after:left-0 after:transition-all hover:after:w-full"
+    >
+      {link}
+    </a>
+  ))}
+</nav>
     </div>
   </header>
 );

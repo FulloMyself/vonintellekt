@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const tiles = [
   {
@@ -41,11 +42,15 @@ const tiles = [
 
 const Tiles = () => (
   <section className="grid grid-cols-12 gap-6 max-w-6xl mx-auto px-6 py-24">
-    {tiles.map((tile) => (
-      <article
+    {tiles.map((tile, index) => (
+      <motion.article
         key={tile.id}
         id={tile.id}
-        className={`${tile.span} relative border border-white/10 rounded-3xl p-6 hover:border-white/25 transition-colors`}
+        className={`${tile.span} relative border border-white/10 rounded-3xl p-6 cursor-pointer`}
+        whileHover={{ scale: 1.03, borderColor: "rgba(255,255,255,0.25)" }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: index * 0.2, duration: 0.6 }}
       >
         <h3 className="text-[clamp(22px,2.6vw,32px)] mb-2">{tile.title}</h3>
         <p className="text-gray-400">{tile.description}</p>
@@ -58,7 +63,7 @@ const Tiles = () => (
         >
           {tile.linkText} <span>→</span>
         </a>
-      </article>
+      </motion.article>
     ))}
   </section>
 );
