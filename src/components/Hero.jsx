@@ -1,12 +1,10 @@
 import React from "react";
 
-function Hero() {
+export default function Hero() {
   return (
-    <section className="hero">
-      <h1 className="hero-title">Von Intellekt</h1>
-      <p className="hero-subtitle">Boom Bap From Welkom</p>
+    <section className="h-screen flex flex-col justify-center items-center text-white text-center bg-black">
+      <h1 className="text-8xl font-bold">VI</h1>
+      <p className="mt-4 text-gray-400">Smooth Boom Bap From Welkom</p>
     </section>
   );
 }
-
-export default Hero;
