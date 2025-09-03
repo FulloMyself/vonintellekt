@@ -1,38 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
+import { motion } from "framer-motion";
 
 const Gate = ({ onEnter }) => {
-  const [hidden, setHidden] = useState(false);
-  const year = new Date().getFullYear();
-
-  const enter = () => {
-    setHidden(true);
-    if (onEnter) onEnter();
-  };
-
   return (
-    <div
-      className={`fixed inset-0 grid place-items-center bg-black transition-opacity duration-600 ${
-        hidden ? "opacity-0 pointer-events-none" : "opacity-100"
-      }`}
-      aria-labelledby="gate-cta"
+    <motion.div
+      className="fixed inset-0 grid place-items-center bg-black z-50"
+      initial={{ opacity: 1 }}
+      animate={{ opacity: 1 }}
     >
-      <div className="text-center select-none">
-        <div
-          id="gate-cta"
-          role="button"
-          tabIndex={0}
-          aria-label="Enter site"
-          className="font-mono font-bold tracking-widest text-white inline-block px-6 py-3 border border-white rounded-full cursor-pointer"
-          onClick={enter}
-          onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && enter()}
+      <motion.div
+        className="text-center select-none"
+        initial={{ scale: 0.8 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 0.6 }}
+      >
+        <button
+          onClick={onEnter}
+          className="font-mono border border-white px-6 py-3 rounded-full text-white hover:bg-white/10 transition"
         >
           TAP / CLICK TO ENTER
-        </div>
-        <div className="mt-4 text-gray-400 text-xs">
-          © {year} VON INTELLEKT — All media reserved.
-        </div>
-      </div>
-    </div>
+        </button>
+        <p className="mt-4 text-gray-400 text-sm">
+          © {new Date().getFullYear()} VON INTELLEKT — All media reserved.
+        </p>
+      </motion.div>
+    </motion.div>
   );
 };
 
