@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { supabase } from "../supabaseClient";
+import { supabase } from "../SupabaseClient";
 
 export default function Profile() {
   const [user, setUser] = useState(null);
