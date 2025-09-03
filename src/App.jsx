@@ -1,34 +1,27 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useState } from "react";
 import Gate from "./components/Gate";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import Music from "./components/Music";
-import Merch from "./components/Merch";
-import Profile from "./components/Profile";
+import Tiles from "./components/Tiles";
 import Footer from "./components/Footer";
 
 function App() {
+  const [entered, setEntered] = useState(false);
+
   return (
-    // Use basename to match GitHub Pages repo path
-    <Router basename="/vonintellekt">
-      {/* Gate overlay */}
-      <Gate />
-
-      {/* Navbar */}
-      <Navbar />
-
-      {/* Page Routes */}
-      <Routes>
-        <Route path="/" element={<Hero />} />
-        <Route path="/music" element={<Music />} />
-        <Route path="/merch" element={<Merch />} />
-        <Route path="/profile" element={<Profile />} />
-      </Routes>
-
-      {/* Footer */}
-      <Footer />
-    </Router>
+    <>
+      {!entered && <Gate onEnter={() => setEntered(true)} />}
+      {entered && (
+        <div className="app opacity-0 transition-opacity duration-700">
+          <Navbar />
+          <main>
+            <Hero />
+            <Tiles />
+          </main>
+          <Footer />
+        </div>
+      )}
+    </>
   );
 }
 
