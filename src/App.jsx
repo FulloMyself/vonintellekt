@@ -10,8 +10,9 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <Router>
-      {/* Gate Overlay */}
+    // Use basename to match GitHub Pages repo path
+    <Router basename="/vonintellekt">
+      {/* Gate overlay */}
       <Gate />
 
       {/* Navbar */}
