@@ -1,9 +1,9 @@
 import React from "react";
 
 const gateIcons = [
-  { src: "/assets/hat.gif", alt: "Hat", style: { left: "25%", top: "40%" } },
-  { src: "/assets/dvd.gif", alt: "DVD", style: { left: "55%", top: "55%" } },
-  { src: "/assets/camera.gif", alt: "Camera", style: { left: "45%", top: "30%" } },
+  { src: "/public/hat.gif", alt: "Hat", style: { left: "25%", top: "40%" } },
+  { src: "/public/dvd.gif", alt: "DVD", style: { left: "55%", top: "55%" } },
+  { src: "/public/camera.gif", alt: "Camera", style: { left: "45%", top: "30%" } },
 ];
 
 const Gate = ({ onEnter }) => (
