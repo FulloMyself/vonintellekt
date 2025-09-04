@@ -1,7 +1,7 @@
 import React from "react";
 
 const gateIcons = [
-  { src: "/public/hat.gif", alt: "Hat", style: { left: "25%", top: "40%" } },
+  { src: "/vonintellekt/public/hat.gif", alt: "Hat", style: { left: "25%", top: "40%" } },
   { src: "/public/dvd.gif", alt: "DVD", style: { left: "55%", top: "55%" } },
   { src: "/public/camera.gif", alt: "Camera", style: { left: "45%", top: "30%" } },
 ];
