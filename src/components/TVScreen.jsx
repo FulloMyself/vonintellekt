@@ -2,7 +2,7 @@
 import React from "react";
 
 const icons = [
-  { src: "/public/hat.gif", alt: "Hat", style: { left: "30%", top: "35%" } },
+  { src: "/vonintellekt/public/hat.gif", alt: "Hat", style: { left: "30%", top: "35%" } },
   { src: "/public/dvd.gif", alt: "DVD", style: { left: "60%", top: "60%" } },
   { src: "/public/camera.gif", alt: "Camera", style: { left: "50%", top: "25%" } },
 ];
