@@ -1,50 +1,56 @@
 // TVScreen.jsx
 import React from "react";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Float } from "@react-three/drei";
 
-import Hat from "./models/Hat";
-import DVD from "./models/DVD";
-import Camera from "./models/Camera";
+const icons = [
+  { src: "/assets/hat.gif", alt: "Hat", style: { left: "30%", top: "35%" } },
+  { src: "/assets/dvd.gif", alt: "DVD", style: { left: "60%", top: "60%" } },
+  { src: "/assets/camera.gif", alt: "Camera", style: { left: "50%", top: "25%" } },
+];
 
-const TVScreen = () => {
-  return (
-    <div className="relative w-full h-screen bg-black flex items-center justify-center">
-      {/* CRT frame effect */}
-      <div className="absolute inset-0 border-[20px] border-gray-900 rounded-[2rem] shadow-[0_0_30px_rgba(0,255,0,0.2)] pointer-events-none" />
+const TVScreen = () => (
+  <div className="relative w-full h-screen bg-black flex items-center justify-center">
+    {/* CRT frame effect */}
+    <div className="absolute inset-0 border-[20px] border-gray-900 rounded-[2rem] shadow-[0_0_30px_rgba(0,255,0,0.2)] pointer-events-none" />
 
-      {/* Scanline effect */}
-      <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_3px)] mix-blend-overlay pointer-events-none" />
+    {/* Scanline effect */}
+    <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_3px)] mix-blend-overlay pointer-events-none" />
 
-      {/* 3D scene */}
-      <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[5, 5, 5]} intensity={1} />
-
-        <Float speed={2} rotationIntensity={1} floatIntensity={2}>
-          <Hat position={[-2, 1, 0]} />
-        </Float>
-
-        <Float speed={3} rotationIntensity={2} floatIntensity={1.5}>
-          <DVD position={[2, -1, 0]} />
-        </Float>
-
-        <Float speed={1.5} rotationIntensity={1} floatIntensity={1}>
-          <Camera position={[0, 2, -1]} />
-        </Float>
-
-        <OrbitControls enableZoom={false} />
-      </Canvas>
-
-      {/* Overlay Menu */}
-      <div className="absolute bottom-8 flex gap-8 text-white font-mono text-lg">
-        <a href="#artists">Artists</a>
-        <a href="#projects">Projects</a>
-        <a href="#shop">Shop</a>
-        <a href="#contact">Contact</a>
-      </div>
+    {/* Spinning GIF icons */}
+    <div className="absolute inset-0 pointer-events-none">
+      {icons.map((icon, i) => (
+        <img
+          key={i}
+          src={icon.src}
+          alt={icon.alt}
+          style={{
+            position: "absolute",
+            width: "120px",
+            ...icon.style,
+            animation: "float 3s ease-in-out infinite",
+          }}
+        />
+      ))}
     </div>
-  );
-};
+
+    {/* Overlay Menu */}
+    <div className="absolute bottom-8 flex gap-8 text-white font-mono text-lg">
+      <a href="#artists">Artists</a>
+      <a href="#projects">Projects</a>
+      <a href="#shop">Shop</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    {/* Add keyframes for floating effect */}
+    <style>
+      {`
+        @keyframes float {
+          0% { transform: translateY(0px) rotate(0deg);}
+          50% { transform: translateY(-20px) rotate(10deg);}
+          100% { transform: translateY(0px) rotate(0deg);}
+        }
+      `}
+    </style>
+  </div>
+);
 
 export default TVScreen;

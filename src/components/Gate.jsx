@@ -1,31 +1,55 @@
 import React from "react";
-import { motion } from "framer-motion";
 
-const Gate = ({ onEnter }) => {
-  return (
-    <motion.div
-      className="fixed inset-0 grid place-items-center bg-black z-50"
-      initial={{ opacity: 1 }}
-      animate={{ opacity: 1 }}
+const gateIcons = [
+  { src: "/assets/hat.gif", alt: "Hat", style: { left: "25%", top: "40%" } },
+  { src: "/assets/dvd.gif", alt: "DVD", style: { left: "55%", top: "55%" } },
+  { src: "/assets/camera.gif", alt: "Camera", style: { left: "45%", top: "30%" } },
+];
+
+const Gate = ({ onEnter }) => (
+  <div className="relative w-full h-screen bg-black flex items-center justify-center">
+    {/* CRT frame effect */}
+    <div className="absolute inset-0 border-[20px] border-gray-900 rounded-[2rem] shadow-[0_0_30px_rgba(0,255,0,0.2)] pointer-events-none" />
+
+    {/* Scanline effect */}
+    <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,rgba(255,255,255,0.05)_0px,rgba(255,255,255,0.05)_1px,transparent_1px,transparent_3px)] mix-blend-overlay pointer-events-none" />
+
+    {/* Spinning GIF icons */}
+    <div className="absolute inset-0 pointer-events-none">
+      {gateIcons.map((icon, i) => (
+        <img
+          key={i}
+          src={icon.src}
+          alt={icon.alt}
+          style={{
+            position: "absolute",
+            width: "120px",
+            ...icon.style,
+            animation: "float 3s ease-in-out infinite",
+          }}
+        />
+      ))}
+    </div>
+
+    {/* Enter Button */}
+    <button
+      className="relative z-10 px-8 py-4 bg-white text-black font-bold rounded-xl shadow-lg hover:bg-gray-200 transition"
+      onClick={onEnter}
     >
-      <motion.div
-        className="text-center select-none"
-        initial={{ scale: 0.8 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 0.6 }}
-      >
-        <button
-          onClick={onEnter}
-          className="font-mono border border-white px-6 py-3 rounded-full text-white hover:bg-white/10 transition"
-        >
-          TAP / CLICK TO ENTER
-        </button>
-        <p className="mt-4 text-gray-400 text-sm">
-          © {new Date().getFullYear()} VON INTELLEKT — All media reserved.
-        </p>
-      </motion.div>
-    </motion.div>
-  );
-};
+      Enter
+    </button>
+
+    {/* Add keyframes for floating effect */}
+    <style>
+      {`
+        @keyframes float {
+          0% { transform: translateY(0px) rotate(0deg);}
+          50% { transform: translateY(-20px) rotate(10deg);}
+          100% { transform: translateY(0px) rotate(0deg);}
+        }
+      `}
+    </style>
+  </div>
+);
 
 export default Gate;
