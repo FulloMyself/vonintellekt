@@ -2,9 +2,9 @@
 import React from "react";
 
 const icons = [
-  { src: "/src/assets/hat.gif", alt: "Hat", style: { left: "30%", top: "35%" } },
-  { src: "/src/assets/dvd.gif", alt: "DVD", style: { left: "60%", top: "60%" } },
-  { src: "/src/assets/camera.gif", alt: "Camera", style: { left: "50%", top: "25%" } },
+  { src: "/assets/hat.gif", alt: "Hat", style: { left: "30%", top: "35%" } },
+  { src: "/assets/dvd.gif", alt: "DVD", style: { left: "60%", top: "60%" } },
+  { src: "/assets/camera.gif", alt: "Camera", style: { left: "50%", top: "25%" } },
 ];
 
 const TVScreen = () => (
