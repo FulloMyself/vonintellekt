@@ -84,99 +84,35 @@ const Tiles = () => {
     }
   };
 
-  const handleCloseModal = () => {
+  const handleCloseModal = (e) => {
+    e.stopPropagation();
     setShowBio(false);
     setShowContact(false);
   };
 
+  // Responsive grid: 2 columns, 3 rows for mobile
   return (
     <section className="home-options-container">
-      <div className="home-options">
-        {/* Center the top row by using empty flex items on both sides */}
-        <div className="home-options-row">
-          <div style={{ flex: 1 }} />
-          <div className="home-options-item" style={{ flex: 1 }}>
+      <div className="home-options-grid">
+        {tiles.map((tile, idx) => (
+          <div className="home-options-item" key={tile.id}>
             <button
-              className="home-options-wrapper forums-button"
-              onClick={() => handleTileClick(tiles[0])}
+              className={`home-options-wrapper ${tile.id === "biography" ? "forums-button" : ""} ${tile.id === "shop" ? "shop-button" : ""} ${tile.id === "about" ? "about-button" : ""} ${tile.id === "contact" ? "contact-button" : ""}`}
+              onClick={() => handleTileClick(tile)}
+              style={tile.style}
             >
-              <img className="home-options-icon" src={tiles[0].icon} alt="Biography" />
-              <h3 className={`home-options-text home-options-text-${tiles[0].colorClass}`}>
-                {tiles[0].label}
+              <img className="home-options-icon" src={tile.icon} alt={tile.label} style={tile.id === "dvd" ? { maxHeight: "8.5vh" } : {}} />
+              <h3 className={`home-options-text home-options-text-${tile.colorClass}`}>
+                {tile.label}
               </h3>
             </button>
           </div>
-          <div className="home-options-item" style={{ flex: 1 }}>
-            <button
-              className="home-options-wrapper"
-              onClick={() => handleTileClick(tiles[1])}
-            >
-              <img
-                className="home-options-icon"
-                style={{ maxHeight: "8.5vh" }}
-                src={tiles[1].icon}
-                alt="DVD"
-              />
-              <h3 className={`home-options-text home-options-text-${tiles[1].colorClass}`}>
-                {tiles[1].label}
-              </h3>
-            </button>
-          </div>
-          <div style={{ flex: 1 }} />
-        </div>
-        <div className="home-options-row">
-          <div className="home-options-item">
-            <button
-              className="home-options-wrapper shop-button"
-              onClick={() => handleTileClick(tiles[2])}
-            >
-              <img
-                className="home-options-icon"
-                style={tiles[2].style}
-                src={tiles[2].icon}
-                alt="Shop"
-              />
-              <h3 className={`home-options-text home-options-text-${tiles[2].colorClass}`}>
-                {tiles[2].label}
-              </h3>
-            </button>
-          </div>
-          <div className="home-options-item">
-            <button
-              className="home-options-wrapper about-button"
-              onClick={() => handleTileClick(tiles[3])}
-            >
-              <img
-                className="home-options-icon"
-                src={tiles[3].icon}
-                alt="About"
-              />
-              <h3 className={`home-options-text home-options-text-${tiles[3].colorClass}`}>
-                {tiles[3].label}
-              </h3>
-            </button>
-          </div>
-          <div className="home-options-item">
-            <button
-              className="home-options-wrapper contact-button"
-              onClick={() => handleTileClick(tiles[4])}
-            >
-              <img
-                className="home-options-icon"
-                src={tiles[4].icon}
-                alt="Contact"
-              />
-              <h3 className={`home-options-text home-options-text-${tiles[4].colorClass}`}>
-                {tiles[4].label}
-              </h3>
-            </button>
-          </div>
-        </div>
+        ))}
       </div>
       {(showBio || showContact) && (
         <div className="bio-modal-overlay" onClick={handleCloseModal}>
           <div className="bio-modal" onClick={e => e.stopPropagation()}>
-            <button className="bio-modal-close" onClick={handleCloseModal}>X</button>
+            <button className="bio-modal-close" onClick={handleCloseModal} tabIndex={0} aria-label="Close biography/contact modal">✕</button>
             {showBio && bioText}
             {showContact && contactText}
           </div>
@@ -198,16 +134,19 @@ const Tiles = () => {
           background: #181818;
           border-radius: 1.5rem;
           box-shadow: 0 0 32px #00ffe7a0, 0 0 0 2px #222 inset;
-          padding: 2.5rem 2rem;
-          max-width: 480px;
+          padding: 2rem 1.2rem;
+          max-width: 95vw;
+          width: 100%;
           color: #fff;
           position: relative;
           animation: fadeInUp 0.4s;
+          max-height: 90vh;
+          overflow-y: auto;
         }
         .bio-modal-close {
           position: absolute;
-          top: 1rem;
-          right: 1rem;
+          top: 0.7rem;
+          right: 0.7rem;
           background: #00ffe7;
           color: #181818;
           border: none;
@@ -218,16 +157,20 @@ const Tiles = () => {
           font-weight: bold;
           cursor: pointer;
           box-shadow: 0 0 8px #00ffe7;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
         .bio-content h2 {
           margin-top: 0;
           margin-bottom: 0.5rem;
-          font-size: 1.5rem;
+          font-size: 1.3rem;
           color: #00ffe7;
         }
         .bio-content p {
           margin: 0.5rem 0;
           line-height: 1.5;
+          font-size: 1rem;
         }
         .bio-content a {
           color: #00ffe7;
