@@ -7,11 +7,29 @@ import Tiles from "./components/Tiles";
 import Footer from "./components/Footer";
 
 function App() {
-  const [entered, setEntered] = useState(true);
+  const [entered, setEntered] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleEnter = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setEntered(true);
+    }, 1200); // 1.2s loading animation
+  };
 
   return (
     <>
-      {!entered && <Gate onEnter={() => setEntered(true)} />}
+      {!entered && (
+        <>
+          <Gate onEnter={handleEnter} />
+          {loading && (
+            <div className="gate-loading-overlay">
+              <div className="gate-loading-spinner" />
+            </div>
+          )}
+        </>
+      )}
       {entered && (
         <TVScreen>
           <Navbar />
@@ -22,6 +40,37 @@ function App() {
           <Footer />
         </TVScreen>
       )}
+      <style>
+        {`
+          .gate-loading-overlay {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: fadeIn 0.3s;
+          }
+          .gate-loading-spinner {
+            width: 64px;
+            height: 64px;
+            border: 6px solid #fff;
+            border-top: 6px solid #00ffe7;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            box-shadow: 0 0 32px #00ffe7, 0 0 64px #fff;
+          }
+          @keyframes spin {
+            0% { transform: rotate(0deg);}
+            100% { transform: rotate(360deg);}
+          }
+          @keyframes fadeIn {
+            from { opacity: 0;}
+            to { opacity: 1;}
+          }
+        `}
+      </style>
     </>
   );
 }
