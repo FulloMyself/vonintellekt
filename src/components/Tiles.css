@@ -8,6 +8,7 @@
 .home-options-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, auto);
   grid-gap: 2.5rem 2.5rem;
   width: 100%;
   max-width: 500px;
@@ -65,6 +66,32 @@
 .home-options-text-green { color: #00ffe7; text-shadow: 0 0 8px #00ffe7; }
 .home-options-text-red { color: #ff2d2d; text-shadow: 0 0 8px #ff2d2d; }
 
+/* Desktop: Place top 2 tiles in row 1, next 3 tiles in row 2, center last tile */
+@media (min-width: 601px) {
+  .home-options-grid > .home-options-item:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .home-options-grid > .home-options-item:nth-child(2) {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .home-options-grid > .home-options-item:nth-child(3) {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .home-options-grid > .home-options-item:nth-child(4) {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  .home-options-grid > .home-options-item:nth-child(5) {
+    grid-column: 1 / span 2;
+    grid-row: 3;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
 @media (max-width: 900px) {
   .home-options-grid {
     max-width: 100%;
@@ -95,7 +122,6 @@
     max-width: 98vw;
     padding: 1.2rem 0.5rem;
   }
-  /* Center the CONTACT icon if it's alone in the last row */
   .home-options-grid > .home-options-item:last-child:nth-child(5) {
     grid-column: 1 / span 2;
     justify-content: center;
