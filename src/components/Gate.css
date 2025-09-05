@@ -16,6 +16,8 @@
   align-items: center;
   justify-content: center;
   animation: fadeIn 1.5s;
+  width: 100vw;
+  max-width: 95vw;
 }
 
 .gate-logo {
@@ -24,11 +26,11 @@
   font-weight: bold;
   letter-spacing: 0.2em;
   color: #fff;
-  text-shadow: 0 0 12px #fff, 0 0 40px #fff, 0 0 80px #fff;
+  text-shadow: 0 0 12px #fff, 0 0 40px #00ffe7a0, 0 0 80px #00ffe7a0;
   position: relative;
   animation: glitch 1.2s infinite linear alternate-reverse;
-  /* Add for accessibility: */
   user-select: none;
+  text-align: center;
 }
 
 .gate-logo::before,
@@ -44,7 +46,7 @@
 }
 
 .gate-logo::before {
-  text-shadow: -2px 0 white;
+  text-shadow: -2px 0 #fff;
   animation: glitchTop 1.2s infinite linear alternate-reverse;
   top: 0;
 }
@@ -69,10 +71,11 @@
   outline: none;
 }
 
-.gate-enter-btn:hover {
+.gate-enter-btn:hover,
+.gate-enter-btn:focus {
   background: #000;
-  color: #fff;
-  box-shadow: 0 0 32px #fff, 0 0 64px #fff;
+  color: #00ffe7;
+  box-shadow: 0 0 32px #00ffe7, 0 0 64px #fff;
 }
 
 .entered .gate-content {
@@ -109,4 +112,34 @@
   0% { clip-path: inset(60% 0 0 0); transform: translate(2px, 2px);}
   50% { clip-path: inset(40% 0 0 0); transform: translate(-2px, -2px);}
   100% { clip-path: inset(60% 0 0 0); transform: translate(2px, 2px);}
+}
+
+/* --- MOBILE FRIENDLINESS --- */
+@media (max-width: 900px) {
+  .gate-logo {
+    font-size: 2.2rem;
+    margin-bottom: 28px;
+  }
+  .gate-enter-btn {
+    font-size: 1.1rem;
+    padding: 14px 28px;
+  }
+}
+
+@media (max-width: 600px) {
+  .gate-content {
+    max-width: 98vw;
+    padding: 0 0.5rem;
+  }
+  .gate-logo {
+    font-size: 1.3rem;
+    margin-bottom: 18px;
+    text-shadow: 0 0 8px #00ffe7a0, 0 0 24px #00ffe7a0;
+  }
+  .gate-enter-btn {
+    font-size: 1rem;
+    padding: 10px 18px;
+    border-radius: 1.2rem;
+    box-shadow: 0 0 8px #00ffe7a0, 0 0 16px black;
+  }
 }
