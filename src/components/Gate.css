@@ -1,0 +1,63 @@
+.gate-container {
+  min-height: 100vh;
+  width: 100vw;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.gate-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 1.5s;
+}
+
+.gate-logo {
+  margin-bottom: 40px;
+  font-size: 3.5rem;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  color: #fff;
+  text-shadow: 0 0 12px #fff, 0 0 40px #fff, 0 0 80px #fff;
+}
+
+.gate-enter-btn {
+  background: #fff;
+  color: #000;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 18px 48px;
+  border-radius: 2rem;
+  cursor: pointer;
+  box-shadow: 0 0 16px #fff, 0 0 32px #fff;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.gate-enter-btn:hover {
+  background: #000;
+  color: #fff;
+  box-shadow: 0 0 32px #fff, 0 0 64px #fff;
+}
+
+.entered .gate-content {
+  display: none;
+}
+
+.main-content {
+  color: #fff;
+  text-align: center;
+  animation: fadeIn 1.2s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(1.05);}
+  to { opacity: 1; transform: scale(1);}
+}

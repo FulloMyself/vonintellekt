@@ -40,3 +40,8 @@
 .read-the-docs {
   color: #888;
 }
+
+.glitch-image-container > div {
+  /* Optional: add a slight blur or opacity for more glitchiness */
+  filter: contrast(1.2) brightness(1.1);
+}

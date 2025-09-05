@@ -1,5 +1,6 @@
 // TVScreen.jsx
 import React from "react";
+import GlitchImage from "./GlitchImage";
 
 const icons = [
   { src: "/hat.gif", alt: "Hat", style: { left: "30%", top: "35%" } },
@@ -18,17 +19,16 @@ const TVScreen = () => (
     {/* Spinning GIF icons */}
     <div className="absolute inset-0 pointer-events-none">
       {icons.map((icon, i) => (
-        <img
+        <div
           key={i}
-          src={icon.src}
-          alt={icon.alt}
           style={{
             position: "absolute",
             width: "120px",
             ...icon.style,
-            animation: "float 3s ease-in-out infinite",
           }}
-        />
+        >
+          <GlitchImage src={icon.src} alt={icon.alt} />
+        </div>
       ))}
     </div>
 
