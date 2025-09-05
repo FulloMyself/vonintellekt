@@ -3,21 +3,46 @@ import { supabase } from "../SupabaseClient";
 
 export default function Profile() {
   const [user, setUser] = useState(null);
+  const [purchases, setPurchases] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const session = supabase.auth.getSession().then(({ data }) => {
+    supabase.auth.getSession().then(({ data }) => {
       if (data.session) {
         setUser(data.session.user);
       }
+      setLoading(false);
     });
 
-    // Optional: subscribe to auth changes
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
     });
 
     return () => listener.subscription.unsubscribe();
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      setLoading(true);
+      supabase
+        .from("purchases")
+        .select("*")
+        .eq("user_id", user.id)
+        .order("created_at", { ascending: false })
+        .then(({ data, error }) => {
+          if (!error) setPurchases(data);
+          setLoading(false);
+        });
+    }
+  }, [user]);
+
+  if (loading) {
+    return (
+      <section className="min-h-screen flex flex-col justify-center items-center bg-gray-700 text-white">
+        <p>Loading...</p>
+      </section>
+    );
+  }
 
   if (!user) {
     return (
@@ -44,11 +69,18 @@ export default function Profile() {
         Log Out
       </button>
       <div className="mt-8">
-        <h3 className="text-xl font-semibold mb-2">Your Purchases (mock)</h3>
-        <ul className="list-disc pl-6 text-gray-300">
-          <li>Purchased Track 1</li>
-          <li>Purchased Track 2</li>
-        </ul>
+        <h3 className="text-xl font-semibold mb-2">Your Purchases</h3>
+        {purchases.length === 0 ? (
+          <p className="text-gray-300">No purchases yet.</p>
+        ) : (
+          <ul className="list-disc pl-6 text-gray-300">
+            {purchases.map((purchase) => (
+              <li key={purchase.id}>
+                {purchase.item_name} <span className="text-xs text-gray-400">({new Date(purchase.created_at).toLocaleString()})</span>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </section>
   );
