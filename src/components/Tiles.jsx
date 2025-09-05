@@ -12,7 +12,8 @@ const tiles = [
   {
     id: "dvd",
     label: "DVD",
-    icon: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.gifservice.fr%2Fen%2Fgif%2Fmulti-media-video-icons-d-v-d-video-g11512-p273081.php&psig=AOvVaw3WodVIdSQ8E3El4ZGGM1s8&ust=1757148093289000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCOjg3vKcwY8DFQAAAAAdAAAAABAL",
+    // Use your provided DVD icon (replace with direct image link if needed)
+    icon: "https://www.gifservice.fr/img/gif-vignettes/273081.gif",
     colorClass: "black",
     onClick: () => window.open("#dvd", "_self"),
   },
@@ -93,7 +94,7 @@ const Tiles = () => {
     <section className="home-options-container">
       <div className="home-options">
         <div className="home-options-row">
-          <div className="home-options-item">
+          <div className="home-options-item" style={{ flex: 1 }}>
             <button
               className="home-options-wrapper forums-button"
               onClick={() => handleTileClick(tiles[0])}
@@ -104,7 +105,7 @@ const Tiles = () => {
               </h3>
             </button>
           </div>
-          <div className="home-options-item">
+          <div className="home-options-item" style={{ flex: 1 }}>
             <button
               className="home-options-wrapper"
               onClick={() => handleTileClick(tiles[1])}
