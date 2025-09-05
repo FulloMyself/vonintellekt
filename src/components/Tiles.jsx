@@ -13,7 +13,7 @@ const tiles = [
     id: "dvd",
     label: "DVD",
     // Use your provided DVD icon (replace with direct image link if needed)
-    icon: "https://www.gifservice.fr/img/gif-vignettes/273081.gif",
+    icon: "https://www.gifservice.fr/img/gif-vignette-large/83f10c77052dd25a3d1cb414383d9d79/273081-d-v-d-video-video-icons-multi-media.gif",
     colorClass: "black",
     onClick: () => window.open("#dvd", "_self"),
   },
