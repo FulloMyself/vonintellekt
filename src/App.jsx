@@ -14,6 +14,7 @@ import MerchGrid from "./components/MerchGrid";
 // You'll need to create these files if they don't exist yet
 import DVDPage from "./pages/DVDPage";
 import AboutPage from "./pages/AboutPage";
+import ShopPage from "./pages/ShopPage";
 
 function App() {
   const [entered, setEntered] = useState(false);
