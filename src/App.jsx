@@ -61,7 +61,7 @@ function App() {
                 }
               />
               {/* Shop Page */}
-              <Route path="/shop" element={<MerchGrid />} />
+              <Route path="/shop" element={<ShopPage />} />
               
               {/* DVD Page */}
               <Route path="/dvd" element={<DVDPage />} />
