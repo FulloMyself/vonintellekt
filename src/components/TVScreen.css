@@ -1,0 +1,52 @@
+.tv-tube-bg {
+  min-height: 100vh;
+  width: 100vw;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.tv-tube-border {
+  position: relative;
+  background: #181818;
+  border-radius: 2.5rem;
+  box-shadow:
+    0 0 60px 10px #00ffb2a0,
+    0 0 0 20px #222 inset,
+    0 0 80px 0 #00ffb240;
+  padding: 2.5vw 2vw;
+  max-width: 1100px;
+  width: 95vw;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.tv-tube-scanlines {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.04) 0px,
+    rgba(255,255,255,0.04) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  mix-blend-mode: overlay;
+  z-index: 2;
+}
+
+.tv-tube-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
