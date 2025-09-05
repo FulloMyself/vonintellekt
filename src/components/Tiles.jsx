@@ -7,7 +7,7 @@ const tiles = [
     label: "BIOGRAPHY",
     icon: "https://dwvo2npct47gg.cloudfront.net/gifs/awgeForum.gif",
     colorClass: "forum",
-    onClick: () => window.open("#biography", "_self"),
+    onClick: () => {}, // handled below
   },
   {
     id: "dvd",
@@ -25,14 +25,6 @@ const tiles = [
     style: { transform: "scale(1.2) translateY(0)" },
   },
   {
-    id: "asaprocky",
-    label: "A$AP ROCKY",
-    icon: "https://dwvo2npct47gg.cloudfront.net/gifs/DBD-COVER1-reverse.gif",
-    colorClass: "black",
-    onClick: () => window.open("https://asaprocky.com", "_blank"),
-    style: { transform: "scale(1.6)" },
-  },
-  {
     id: "about",
     label: "ABOUT",
     icon: "https://dwvo2npct47gg.cloudfront.net/gifs/question-block-red.gif",
@@ -44,7 +36,7 @@ const tiles = [
     label: "CONTACT",
     icon: "https://dwvo2npct47gg.cloudfront.net/gifs/pager.gif",
     colorClass: "green",
-    onClick: () => window.open("#contact", "_self"),
+    onClick: () => {}, // handled below
   },
 ];
 
@@ -66,18 +58,36 @@ const bioText = (
   </div>
 );
 
+const contactText = (
+  <div className="bio-content">
+    <h2>Contact Von Intellekt</h2>
+    <p><b>Email (Bookings):</b> <a href="mailto:bookings@vonintellekt.co.za">bookings@vonintellekt.co.za</a></p>
+    <p><b>Twitter:</b> <a href="https://twitter.com/Von_Intellekt" target="_blank" rel="noopener noreferrer">@Von_Intellekt</a></p>
+    <p><b>Instagram:</b> <a href="https://instagram.com/von_intellekt" target="_blank" rel="noopener noreferrer">@von_intellekt</a></p>
+    <p><b>TikTok:</b> <a href="https://www.tiktok.com/@von_intellekt" target="_blank" rel="noopener noreferrer">Von_Intellekt</a></p>
+    <p><b>YouTube:</b> <a href="https://www.youtube.com/results?search_query=Von+Intellekt" target="_blank" rel="noopener noreferrer">Von Intellekt</a></p>
+    <p><b>Bandcamp:</b> <a href="https://thefreerecordings.bandcamp.com" target="_blank" rel="noopener noreferrer">thefreerecordings.bandcamp.com</a></p>
+  </div>
+);
+
 const Tiles = () => {
   const [showBio, setShowBio] = React.useState(false);
+  const [showContact, setShowContact] = React.useState(false);
 
   const handleTileClick = (tile) => {
     if (tile.id === "biography") {
       setShowBio(true);
+    } else if (tile.id === "contact") {
+      setShowContact(true);
     } else {
       tile.onClick();
     }
   };
 
-  const handleCloseBio = () => setShowBio(false);
+  const handleCloseModal = () => {
+    setShowBio(false);
+    setShowContact(false);
+  };
 
   return (
     <section className="home-options-container">
@@ -132,14 +142,13 @@ const Tiles = () => {
           </div>
           <div className="home-options-item">
             <button
-              className="home-options-wrapper rallyrace-button"
+              className="home-options-wrapper about-button"
               onClick={() => handleTileClick(tiles[3])}
             >
               <img
                 className="home-options-icon"
-                style={tiles[3].style}
                 src={tiles[3].icon}
-                alt="A$AP ROCKY"
+                alt="About"
               />
               <h3 className={`home-options-text home-options-text-${tiles[3].colorClass}`}>
                 {tiles[3].label}
@@ -148,41 +157,27 @@ const Tiles = () => {
           </div>
           <div className="home-options-item">
             <button
-              className="home-options-wrapper about-button"
+              className="home-options-wrapper contact-button"
               onClick={() => handleTileClick(tiles[4])}
             >
               <img
                 className="home-options-icon"
                 src={tiles[4].icon}
-                alt="About"
+                alt="Contact"
               />
               <h3 className={`home-options-text home-options-text-${tiles[4].colorClass}`}>
                 {tiles[4].label}
               </h3>
             </button>
           </div>
-          <div className="home-options-item">
-            <button
-              className="home-options-wrapper contact-button"
-              onClick={() => handleTileClick(tiles[5])}
-            >
-              <img
-                className="home-options-icon"
-                src={tiles[5].icon}
-                alt="Contact"
-              />
-              <h3 className={`home-options-text home-options-text-${tiles[5].colorClass}`}>
-                {tiles[5].label}
-              </h3>
-            </button>
-          </div>
         </div>
       </div>
-      {showBio && (
-        <div className="bio-modal-overlay" onClick={handleCloseBio}>
+      {(showBio || showContact) && (
+        <div className="bio-modal-overlay" onClick={handleCloseModal}>
           <div className="bio-modal" onClick={e => e.stopPropagation()}>
-            <button className="bio-modal-close" onClick={handleCloseBio}>X</button>
-            {bioText}
+            <button className="bio-modal-close" onClick={handleCloseModal}>X</button>
+            {showBio && bioText}
+            {showContact && contactText}
           </div>
         </div>
       )}
@@ -232,6 +227,11 @@ const Tiles = () => {
         .bio-content p {
           margin: 0.5rem 0;
           line-height: 1.5;
+        }
+        .bio-content a {
+          color: #00ffe7;
+          text-decoration: underline;
+          word-break: break-all;
         }
         @keyframes fadeIn {
           from { opacity: 0;}
