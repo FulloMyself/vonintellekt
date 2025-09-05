@@ -12,7 +12,6 @@ const tiles = [
   {
     id: "dvd",
     label: "DVD",
-    // Use your provided DVD icon (replace with direct image link if needed)
     icon: "https://www.gifservice.fr/img/gif-vignette-large/83f10c77052dd25a3d1cb414383d9d79/273081-d-v-d-video-video-icons-multi-media.gif",
     colorClass: "black",
     onClick: () => window.open("#dvd", "_self"),
@@ -93,7 +92,9 @@ const Tiles = () => {
   return (
     <section className="home-options-container">
       <div className="home-options">
+        {/* Center the top row by using empty flex items on both sides */}
         <div className="home-options-row">
+          <div style={{ flex: 1 }} />
           <div className="home-options-item" style={{ flex: 1 }}>
             <button
               className="home-options-wrapper forums-button"
@@ -121,7 +122,6 @@ const Tiles = () => {
               </h3>
             </button>
           </div>
-          <div style={{ flex: 1 }} />
           <div style={{ flex: 1 }} />
         </div>
         <div className="home-options-row">

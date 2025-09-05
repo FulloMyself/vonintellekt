@@ -44,19 +44,19 @@
 }
 
 .gate-logo::before {
-  text-shadow: -2px 0 red;
+  text-shadow: -2px 0 white;
   animation: glitchTop 1.2s infinite linear alternate-reverse;
   top: 0;
 }
 
 .gate-logo::after {
-  text-shadow: 2px 0 #00fff9;
+  text-shadow: 2px 0 #00ffe7a0;
   animation: glitchBottom 1.2s infinite linear alternate-reverse;
   top: 0;
 }
 
 .gate-enter-btn {
-  background: #fff;
+  background: #00ffe7a0;
   color: #000;
   border: none;
   font-size: 1.5rem;
@@ -64,7 +64,7 @@
   padding: 18px 48px;
   border-radius: 2rem;
   cursor: pointer;
-  box-shadow: 0 0 16px #fff, 0 0 32px #fff;
+  box-shadow: 0 0 16px #00ffe7a0, 0 0 32px black;
   transition: background 0.2s, color 0.2s, box-shadow 0.2s;
   outline: none;
 }
