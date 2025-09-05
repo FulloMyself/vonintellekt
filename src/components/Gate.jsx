@@ -4,7 +4,7 @@ import "./Gate.css";
 const Gate = ({ onEnter }) => (
   <div className="gate-container">
     <div className="gate-content">
-      <h1 className="gate-logo">Von Intellekt/ 057 Representative/ Von Corleone</h1>
+      <h1 className="gate-logo"> </h1>
       <button className="gate-enter-btn" onClick={onEnter}>
         Press Start
       </button>
