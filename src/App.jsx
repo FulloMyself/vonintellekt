@@ -9,20 +9,26 @@ import Footer from "./components/Footer";
 function App() {
   const [entered, setEntered] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [fadeGate, setFadeGate] = useState(false);
 
   const handleEnter = () => {
-    setLoading(true);
+    setFadeGate(true);
     setTimeout(() => {
-      setLoading(false);
-      setEntered(true);
-    }, 1200); // 1.2s loading animation
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+        setEntered(true);
+      }, 1200); // 1.2s loading animation
+    }, 600); // 0.6s fade out
   };
 
   return (
     <>
       {!entered && (
         <>
-          <Gate onEnter={handleEnter} />
+          <div className={`gate-fade-wrapper${fadeGate ? " gate-fade-out" : ""}`}>
+            <Gate onEnter={handleEnter} />
+          </div>
           {loading && (
             <div className="gate-loading-overlay">
               <div className="gate-loading-spinner" />
@@ -42,6 +48,14 @@ function App() {
       )}
       <style>
         {`
+          .gate-fade-wrapper {
+            transition: opacity 0.6s cubic-bezier(.4,0,.2,1);
+            opacity: 1;
+          }
+          .gate-fade-out {
+            opacity: 0;
+            pointer-events: none;
+          }
           .gate-loading-overlay {
             position: fixed;
             inset: 0;
