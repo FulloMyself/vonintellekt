@@ -12,7 +12,7 @@ const tiles = [
   {
     id: "dvd",
     label: "DVD",
-    icon: "https://dwvo2npct47gg.cloudfront.net/gifs/awgeDVD.gif",
+    icon: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.gifservice.fr%2Fen%2Fgif%2Fmulti-media-video-icons-d-v-d-video-g11512-p273081.php&psig=AOvVaw3WodVIdSQ8E3El4ZGGM1s8&ust=1757148093289000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCOjg3vKcwY8DFQAAAAAdAAAAABAL",
     colorClass: "black",
     onClick: () => window.open("#dvd", "_self"),
   },
