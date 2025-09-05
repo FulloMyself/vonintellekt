@@ -102,7 +102,7 @@
   }
   /* Center the CONTACT icon (last tile) on all screens */
   .home-options-grid > .home-options-item:last-child {
-    grid-column: 1 / span 2;
+    grid-column: 1 / span 3;
     justify-content: center;
   }
 }
