@@ -10,6 +10,11 @@ import Footer from "./components/Footer";
 import MusicPlayer from "./components/MusicPlayer";
 import MerchGrid from "./components/MerchGrid";
 
+// Import your new page components
+// You'll need to create these files if they don't exist yet
+import DVDPage from "./pages/DVDPage";
+import AboutPage from "./pages/AboutPage";
+
 function App() {
   const [entered, setEntered] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -57,6 +62,20 @@ function App() {
               />
               {/* Shop Page */}
               <Route path="/shop" element={<MerchGrid />} />
+              
+              {/* DVD Page */}
+              <Route path="/dvd" element={<DVDPage />} />
+              
+              {/* About Page */}
+              <Route path="/about" element={<AboutPage />} />
+              
+              {/* Catch-all route - redirect to home */}
+              <Route path="*" element={
+                <>
+                  <Hero />
+                  <Tiles />
+                </>
+              } />
             </Routes>
           </main>
           <Footer />
