@@ -1,5 +1,7 @@
 import React from "react";
 import "./Tiles.css";
+import { Link } from "react-router-dom";
+
 
 const tiles = [
   {
@@ -21,7 +23,8 @@ const tiles = [
     label: "SHOP",
     icon: "https://dwvo2npct47gg.cloudfront.net/gifs/hats_2.gif",
     colorClass: "green",
-    onClick: () => window.open("#shop", "_self"),
+    onClick: () => <Link to="/shop">🛒 Shop</Link>,
+    
     style: { transform: "scale(1.2) translateY(0)" },
   },
   {

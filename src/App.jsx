@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
+
 import Gate from "./components/Gate";
 import TVScreen from "./components/TVScreen";
 import Navbar from "./components/Navbar";
@@ -7,7 +9,6 @@ import Tiles from "./components/Tiles";
 import Footer from "./components/Footer";
 import MusicPlayer from "./components/MusicPlayer";
 import MerchGrid from "./components/MerchGrid";
-
 
 function App() {
   const [entered, setEntered] = useState(false);
@@ -26,7 +27,7 @@ function App() {
   };
 
   return (
-    <>
+    <Router>
       {!entered && (
         <>
           <div className={`gate-fade-wrapper${fadeGate ? " gate-fade-out" : ""}`}>
@@ -43,8 +44,20 @@ function App() {
         <TVScreen>
           <Navbar />
           <main>
-            <Hero />
-            <Tiles />
+            <Routes>
+              {/* Homepage */}
+              <Route
+                path="/"
+                element={
+                  <>
+                    <Hero />
+                    <Tiles />
+                  </>
+                }
+              />
+              {/* Shop Page */}
+              <Route path="/shop" element={<MerchGrid />} />
+            </Routes>
           </main>
           <Footer />
         </TVScreen>
@@ -88,7 +101,7 @@ function App() {
           }
         `}
       </style>
-    </>
+    </Router>
   );
 }
 
