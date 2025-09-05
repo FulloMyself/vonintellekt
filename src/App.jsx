@@ -7,7 +7,7 @@ import Tiles from "./components/Tiles";
 import Footer from "./components/Footer";
 
 function App() {
-  const [entered, setEntered] = useState(false);
+  const [entered, setEntered] = useState(true);
 
   return (
     <>
