@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Tiles from "./components/Tiles";
 import Footer from "./components/Footer";
+import TVScreen from "./components/TVScreen";
 
 function App() {
   const [entered, setEntered] = useState(false);
@@ -14,20 +15,22 @@ function App() {
       {!entered && <Gate onEnter={() => setEntered(true)} />}
       <AnimatePresence>
         {entered && (
-          <motion.div
-            className="app"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <Navbar />
-            <main>
-              <Hero />
-              <Tiles />
-            </main>
-            <Footer />
-          </motion.div>
+          <TVScreen>
+            <motion.div
+              className="app"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <Navbar />
+              <main>
+                <Hero />
+                <Tiles />
+              </main>
+              <Footer />
+            </motion.div>
+          </TVScreen>
         )}
       </AnimatePresence>
     </>

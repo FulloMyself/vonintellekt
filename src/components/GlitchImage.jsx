@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from "react";
+import "./GlitchImage.css";
 
 const ROWS = 20; // Number of glitch rows
 
@@ -37,6 +38,12 @@ const GlitchImage = ({ src, alt, className = "", style = {} }) => {
         ...style,
       }}
     >
+      <img src={src} alt={alt} className="tv-glitch-img" />
+      <img src={src} alt={alt} className="tv-glitch-img tv-glitch-r" />
+      <img src={src} alt={alt} className="tv-glitch-img tv-glitch-g" />
+      <img src={src} alt={alt} className="tv-glitch-img tv-glitch-b" />
+      <div className="tv-glitch-scanlines" />
+      <div className="tv-glitch-flicker" />
       {[...Array(ROWS)].map((_, i) => (
         <div
           key={i}

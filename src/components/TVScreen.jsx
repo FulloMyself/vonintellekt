@@ -8,7 +8,7 @@ const icons = [
   { src: "/camera.gif", alt: "Camera", style: { left: "50%", top: "25%" } },
 ];
 
-const TVScreen = () => (
+const TVScreen = ({ children }) => (
   <div className="relative w-full h-screen bg-black flex items-center justify-center">
     {/* CRT frame effect */}
     <div className="absolute inset-0 border-[20px] border-gray-900 rounded-[2rem] shadow-[0_0_30px_rgba(0,255,0,0.2)] pointer-events-none" />
@@ -33,12 +33,15 @@ const TVScreen = () => (
     </div>
 
     {/* Overlay Menu */}
-    <div className="absolute bottom-8 flex gap-8 text-white font-mono text-lg">
+    <div className="absolute bottom-8 flex gap-8 text-white font-mono text-lg z-10">
       <a href="#artists">Artists</a>
       <a href="#projects">Projects</a>
       <a href="#shop">Shop</a>
       <a href="#contact">Contact</a>
     </div>
+
+    {/* Main Content */}
+    <div className="relative z-10 w-full h-full flex flex-col">{children}</div>
 
     {/* Add keyframes for floating effect */}
     <style>
