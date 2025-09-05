@@ -100,4 +100,9 @@
     grid-column: 1 / span 2;
     justify-content: center;
   }
+  /* Center the CONTACT icon (last tile) on all screens */
+  .home-options-grid > .home-options-item:last-child {
+    grid-column: 1 / span 2;
+    justify-content: center;
+  }
 }
