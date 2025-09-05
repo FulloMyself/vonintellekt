@@ -1,10 +1,23 @@
 import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Gate from "./components/Gate";
 import TVScreen from "./components/TVScreen";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Tiles from "./components/Tiles";
 import Footer from "./components/Footer";
+import MusicPlayer from "./components/MusicPlayer";
+import MerchGrid from "./components/MerchGrid";
+
+function ShopPage() {
+  return (
+    <div className="shop-page">
+      <h2 className="text-center text-xl font-bold mb-6">Von Intellekt Shop</h2>
+      <MusicPlayer />
+      <MerchGrid />
+    </div>
+  );
+}
 
 function App() {
   const [entered, setEntered] = useState(false);
@@ -18,12 +31,12 @@ function App() {
       setTimeout(() => {
         setLoading(false);
         setEntered(true);
-      }, 1200); // 1.2s loading animation
-    }, 600); // 0.6s fade out
+      }, 1200);
+    }, 600);
   };
 
   return (
-    <>
+    <Router>
       {!entered && (
         <>
           <div className={`gate-fade-wrapper${fadeGate ? " gate-fade-out" : ""}`}>
@@ -40,8 +53,18 @@ function App() {
         <TVScreen>
           <Navbar />
           <main>
-            <Hero />
-            <Tiles />
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <>
+                    <Hero />
+                    <Tiles />
+                  </>
+                }
+              />
+              <Route path="/shop" element={<ShopPage />} />
+            </Routes>
           </main>
           <Footer />
         </TVScreen>
@@ -85,7 +108,7 @@ function App() {
           }
         `}
       </style>
-    </>
+    </Router>
   );
 }
 
