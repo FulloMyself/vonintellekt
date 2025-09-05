@@ -96,13 +96,8 @@
     padding: 1.2rem 0.5rem;
   }
   /* Center the CONTACT icon if it's alone in the last row */
-  .home-options-item:last-child:nth-child(5) {
+  .home-options-grid > .home-options-item:last-child .home-options-item:last-child:nth-child(5) {
     grid-column: 1 / span 2;
-    justify-content: center;
-  }
-  /* Center the CONTACT icon (last tile) on all screens */
-  .home-options-grid > .home-options-item:last-child {
-    grid-column: 1 / span 3;
     justify-content: center;
   }
 }
