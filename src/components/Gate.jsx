@@ -12,7 +12,7 @@ const Gate = () => {
     <div className={`gate-container${entered ? " entered" : ""}`}>
       {!entered ? (
         <div className="gate-content">
-          <h1 className="gate-logo">AWGE</h1>
+          <h1 className="gate-logo">VI</h1>
           <button className="gate-enter-btn" onClick={handleEnter}>
             Enter
           </button>
@@ -20,7 +20,7 @@ const Gate = () => {
       ) : (
         <div className="main-content">
           {/* Replace this with your main site content */}
-          <h2>Welcome to AWGE</h2>
+          <h2>Welcome to Von Intellekt's World</h2>
         </div>
       )}
     </div>
