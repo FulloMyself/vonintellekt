@@ -22,17 +22,20 @@ export default function Profile() {
   }, []);
 
   useEffect(() => {
-    if (user) {
+    const fetchProfile = async () => {
       setLoading(true);
-      supabase
-        .from("purchases")
-        .select("*")
-        .eq("user_id", user.id)
-        .order("created_at", { ascending: false })
-        .then(({ data, error }) => {
-          if (!error) setPurchases(data);
-          setLoading(false);
-        });
+      const jwt = (await supabase.auth.getSession()).data.session?.access_token;
+      const res = await fetch("https://vonintellek-api-backend.onrender.com", {
+        headers: { Authorization: `Bearer ${jwt}` }
+      });
+      const data = await res.json();
+      setUser(data.user);
+      setPurchases(data.purchases);
+      setLoading(false);
+    };
+
+    if (user) {
+      fetchProfile();
     }
   }, [user]);
 
