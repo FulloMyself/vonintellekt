@@ -14,7 +14,7 @@ const Gate = () => {
         <div className="gate-content">
           <h1 className="gate-logo">VI</h1>
           <button className="gate-enter-btn" onClick={handleEnter}>
-            Enter
+            Press Start
           </button>
         </div>
       ) : (
